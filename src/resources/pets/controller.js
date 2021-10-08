@@ -1,4 +1,7 @@
 const db = require("../../utils/database");
+const Pet = require("./model");
+
+Pet();
 
 const createOne = async (req, res) => {
   console.log("Pets Router [CREATE]", { body: req.body });
@@ -28,6 +31,26 @@ const createOne = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+console.log("Inside getAll")
+
+const getAllSQL= `
+    SELECT * from pets
+  `;
+
+  try {
+    const result = await db.query(getAllSQL);
+
+    res.json({ data: result.rows[0] });
+  } catch (error) {
+    console.error("[ERROR] getAll ", { error: error.message });
+
+    res.status(500).json({ error: error.message });
+  }
+
+}
+
 module.exports = {
-  createOne
+  createOne,
+  getAll
 };

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -16,7 +18,7 @@ const app = express();
 /* SETUP MIDDLEWARE */
 
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(express.json());
 
 /* SETUP ROUTES */
 

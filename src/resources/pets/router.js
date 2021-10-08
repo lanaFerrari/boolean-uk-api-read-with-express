@@ -1,9 +1,12 @@
 const express = require("express");
-
-const { createOne } = require("./controller");
-
 const router = express.Router();
 
+const { createOne, getAll } = require("./controller");
+
+// Post
 router.post("/", createOne);
+
+// Get all
+router.get("/" , getAll);
 
 module.exports = router;
